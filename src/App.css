@@ -128,4 +128,10 @@ main{
   .btnsModal > button {
     font-size: 20px;
   }
+  .modalPreviewContent > h1{
+    font-size: 3em;
+  }
+  .modalPreviewContent > p{
+    font-size: 4em;
+  }
 }
