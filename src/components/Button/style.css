@@ -1,19 +1,68 @@
 .btn{
-    width: 90%;
-    height: 50%;
-    background-color:#111;
-    opacity: 0.8;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition-duration: 500ms;
-  
+  width: 30vw;
+  height: 35vh;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition-duration: 500ms;
+  background-image: linear-gradient(45deg,rgba(255,255,255,0.4), #E39402);
+  background-color: #E39402;
+  text-transform: uppercase;
+  color: white;
+}
+.btn:active{
+  opacity: 0.7;
+  transition-duration: 0.5ms;
+}
+.btn > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn div > p {
+  display: flex;
+  font-size: 50px;
+}
+.btn div > h1 {
+  font-size: 35px;
+}
+
+@media screen and (min-width: 1300px){
+  .btn div > p {
+    display: flex;
+    font-size: 50px;
+  }
+  .btn div > h1 {
     font-size: 40px;
-    text-transform: uppercase;
-    color: #fff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
-  .btn:active{
-    transform: translateY(3px);
-    transition-duration: 0.1ms;
+}
+@media screen and (max-width: 768px) {
+  .btn{
+    height: 25vh;
   }
+  .btn div > p {
+    display: flex;
+    font-size: 40px;
+  }
+  .btn div > h1 {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .btn{
+    height: 20vh;
+  }
+  .btn div > p {
+    display: flex;
+    font-size: 35px;
+  }
+  .btn div > h1 {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 490px) {
+  .btn div > h1 {
+    display: none;
+  }
+}
