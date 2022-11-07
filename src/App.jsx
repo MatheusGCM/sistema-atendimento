@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Button from "./components/Button";
-import { MdAccessibleForward, MdListAlt, MdAttribution } from 'react-icons/md';
-
+import { MdAccessibleForward, MdListAlt, MdAttribution, MdClose } from 'react-icons/md';
+import check from '../src/assets/check.png';
 const mock = [
   {
     id: "1",
@@ -58,7 +58,7 @@ const App = () => {
     <div className='container'>
       <header>
         <h1>Sistema de Atendimento</h1>
-        <h3>Escolha sua ficha:</h3>
+        <h2>Clique na opção desejada para retirar sua senha:</h2>
       </header>
       <main>
           {mock.map(item => <Button {...item} key={item.id} onClick={() => generateToken(item)} />)}
@@ -66,35 +66,36 @@ const App = () => {
       {modalConfirmVisible && (
         <div className='modal' >
           <div className='modalContent'>
-            <h1>Confirmar escolha de ficha <u>{optionSelected.name}</u> ?</h1>
+            <button className="btnExit" onClick={() => setModalConfirmVisible(false)}>
+              <MdClose size={30} />
+            </button>
+            <p>Deseja gerar ficha <u>{optionSelected.name}</u>?</p>
             <div className='btnsModal'>
               <button onClick={confirmGenerateToken}>Sim</button>
               <button onClick={() => setModalConfirmVisible(false)}>Não</button>
             </div>
+            {optionSelected.name === "Preferencial" && (
+              <span><i>Obs: Ficha destinada a pessoas idosas, gestantes ou deficientes.</i></span>
+            )}
           </div> 
         </div>     
       )}
       {modalPreviewVisible && (
-        <div className='modalPreviewContent'>
-          {isLoading ? 
-            <>
-              <h1>Gerando ficha...</h1>
+        <div className='modal'>
+          <div className='modalPreviewContent'>
+            {isLoading ? <p>Gerando ficha...</p> : <p>Ficha gerada com sucesso!<img src={check} alt="check" className='img' /></p>}
+            {!isLoading && <p><u>{data.senha}</u></p>}
+            <button onClick={() => setModalPreviewVisible(false)}>{isLoading ? (
               <div className="spinner-container">
                 <div className="loading-spinner">
                 </div>
               </div> 
-            </> 
-                :
-            <> 
-              <h1>Ficha gerada com sucesso!</h1>
-              <p>{data.senha}</p>
-            </>
-          }
-          <button onClick={() => setModalPreviewVisible(false)}>ok</button>
-        </div> 
-      )}
+            ): 'ok'}
+            </button>
+          </div>
+        </div>
+      )} 
     </div>
   );
 };
-
 export default App;
